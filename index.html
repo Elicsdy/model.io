@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="icon" type="image/png" href="assets/images/3dviewer_net_favicon.ico">
+    <link rel="canonical" href="https://3dviewer.net">
+
+    <title>Online 3D Viewer</title>
+
+    <!-- meta start -->
+    <!-- meta end -->
+
+    <link rel="stylesheet" type="text/css" href="o3dv/o3dv.website.min.css?v=0.12.0">
+    <script type="text/javascript" src="o3dv/o3dv.website.min.js?v=0.12.0"></script>
+
+
+    <!-- analytics start -->
+    <script type="text/javascript">
+        OV.SetWebsiteEventHandler ((eventName, eventLabel, eventParams) => {
+            console.log ({
+                eventName : eventName,
+                eventLabel : eventLabel,
+                eventParams : eventParams
+            });
+        });
+    </script>
+    <!-- analytics end -->
+
+    <script type="text/javascript">
+         OV.StartWebsite ('libs');
+    </script>
+
+</head>
+
+<body>
+    <input type="file" id="open_file" style="display:none;" multiple></input>
+    <div class="header" id="header">
+        <div class="title">
+            <div class="title_left">
+                <a href="index.html">
+                    <svg class="logo_image"><use href="assets/images/3dviewer_net_logo_text.svg#logo"></use></svg>
+                </a>
+            </div>
+            <div class="main_file_name only_full_width" id="main_file_name"></div>
+        </div>
+        <div class="toolbar" id="toolbar"></div>
+    </div>
+    <div class="main" id="main">
+        <div class="main_left_container only_full_width" id="main_left_container">
+            <div class="main_navigator ov_panel_set_container" id="main_navigator"></div>
+            <div class="main_splitter" id="main_navigator_splitter"></div>
+        </div>
+        <div class="main_viewer" id="main_viewer"></div>
+        <div class="main_right_container only_full_width" id="main_right_container">
+            <div class="main_splitter" id="main_sidebar_splitter"></div>
+            <div class="main_sidebar ov_panel_set_right_container" id="main_sidebar"></div>
+        </div>
+    </div>
+    <div class="intro ov_thin_scrollbar" id="intro">
+        <div class="intro_content" id="intro_content">
+            <div class="intro_logo">
+                <!-- <svg class="intro_logo"><use href="assets/images/3dviewer_net_logo_text.svg#logo"></use></svg> -->
+                <div class="intro_dragdrop_text">Drag and drop 3D models here.</div>
+            </div>
+            <div class="intro_formats">
+                <div class="intro_formats_title">Check an example file:</div>
+                <div class="intro_file_formats">
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">3dm</div>
+                        <a href="#model=assets/models/RhinoLogo.3dm"></a>
+                    </div>
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">3ds</div>
+                        <a href="#model=assets/models/cubes.3ds,assets/models/texture.png"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">3mf</div>
+                        <a href="#model=assets/models/rhombicuboctahedron.3mf"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">amf</div>
+                        <a href="#model=assets/models/rook.amf"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">bim</div>
+                        <a href="#model=assets/models/MultipleMeshes.bim"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">brep</div>
+                        <a href="#model=assets/models/as1_pe_203.brep"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">dae</div>
+                        <a href="#model=assets/models/X_Bot.dae"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">fbx</div>
+                        <a href="#model=assets/models/Y_Bot.fbx"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">fcstd</div>
+                        <a href="#model=assets/models/ArchDetail.FCStd"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">gltf</div>
+                        <a href="#model=assets/models/DamagedHelmet.glb"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">ifc</div>
+                        <a href="#model=assets/models/haus.ifc"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">iges</div>
+                        <a href="#model=assets/models/as1_pe_203.igs"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">step</div>
+                        <a href="#model=assets/models/as1_pe_203.stp"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">stl</div>
+                        <a href="#model=assets/models/utah_teapot.stl"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">obj</div>
+                        <a href="#model=assets/models/solids.obj,assets/models/solids.mtl"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">off</div>
+                        <a href="#model=assets/models/cube.off"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">ply</div>
+                        <a href="#model=assets/models/cow.ply"></a>
+                    </div>
+                    
+                    <div class="intro_file_formatsa">
+                        <div class="filediv">wrl</div>
+                        <a href="#model=assets/models/extrusion3.wrl"></a>
+                    </div>  
+                </div>
+                <div class="intro_file_formats" id="fileList">
+                    <!-- 文件列表将通过 JavaScript 动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 获取上传按钮和文件输入框
+        var uploadButton = document.getElementById("uploadButton");
+        var fileInput = document.getElementById("fileInput");
+        var fileList = document.getElementById("fileList");
+
+        // 添加点击事件监听器
+        uploadButton.addEventListener("click", function() {
+            // 触发文件选择框
+            fileInput.click();
+        });
+
+        // 添加文件变化事件监听器
+        fileInput.addEventListener("change", function() {
+            // 创建 FormData 对象，用于将文件数据发送到服务器
+            var formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            // 发送 AJAX 请求
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/sansi/model/preview/upload");
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // 文件上传成功后刷新文件列表
+                    fetchFileList();
+                    alert("文件上传成功");
+                } else {
+                    alert("文件上传失败");
+                }
+            };
+            xhr.send(formData);
+        });
+
+        // 定义生成文件列表的函数
+        function renderFileList(files) {
+            // 清空文件列表容器
+            fileList.innerHTML = "";
+
+            // 遍历文件列表，动态生成文件列表项
+            files.forEach(function(filename) {
+                // 创建文件列表项容器
+                var fileItem = document.createElement("div");
+                fileItem.classList.add("intro_file_form_user");
+
+                // 创建文件名容器
+                var fileNameDiv = document.createElement("div");
+                fileNameDiv.textContent = filename;
+                fileNameDiv.classList.add("test")
+
+                // 创建文件名链接
+                var fileLink = document.createElement("a");
+                fileLink.href = "#model=/sansi/model/preview/models/" + filename;
+
+                // 创建删除按钮
+                var deleteButton = document.createElement("div");
+                deleteButton.classList.add("deleteButton");
+
+                var copyLinkButton = document.createElement("div");
+                copyLinkButton.classList.add("copyButton")
+
+                // 添加点击事件监听器，点击按钮复制链接到剪贴板
+                copyLinkButton.addEventListener("click", function() {
+                    var linkToCopy = window.location.origin + "/sansi/model/preview/models/" + filename;
+
+                    // 创建一个临时的 textarea 元素来存放链接
+                    var tempTextArea = document.createElement("textarea");
+                    tempTextArea.value = linkToCopy;
+
+                    // 将 textarea 元素添加到页面中
+                    document.body.appendChild(tempTextArea);
+
+                    // 选中并复制链接
+                    tempTextArea.select();
+                    document.execCommand("copy");
+
+                    // 移除临时的 textarea 元素
+                    document.body.removeChild(tempTextArea);
+
+                    // 提示用户链接已复制
+                    alert("链接已复制到剪贴板");
+                });
+
+                // 添加点击事件监听器，点击按钮弹出确认框
+                deleteButton.addEventListener("click", function() {
+                    var confirmed = confirm("确定要删除文件 " + filename + " 吗？");
+                    if (confirmed) {
+                        // 发送删除请求
+                        fetch("/sansi/model/preview/delete", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                            body: "filename=" + encodeURIComponent(filename)
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                // 删除成功后重新渲染文件列表
+                                if (data.message === "文件删除成功") {
+                                    fetchFileList();
+                                } else {
+                                    alert("删除文件失败：" + data.error);
+                                }
+                            })
+                            .catch(error => console.error("Error deleting file:", error));
+                    }
+                });
+                // 将文件名链接和删除按钮添加到文件列表项容器中
+                fileItem.appendChild(fileNameDiv);
+                fileItem.appendChild(fileLink);
+                fileItem.appendChild(copyLinkButton);
+                fileItem.appendChild(deleteButton);
+                // 将文件列表项添加到文件列表容器中
+                fileList.appendChild(fileItem);
+            });
+        }
+
+        // 定义获取文件列表的函数
+        function fetchFileList() {
+            fetch("/sansi/model/preview/list")
+                .then(response => response.json())
+                .then(data => {
+                    renderFileList(data.files);
+                })
+                .catch(error => console.error("Error fetching file list:", error));
+        }
+
+        // 首次加载页面时获取文件列表
+        fetchFileList();
+    });
+</script>
+
+
+<style>
+.intro_file_formats {
+    display: flex;
+    flex-wrap: wrap; /* 当内容超出一行时自动换行 */
+    justify-content: left;
+    white-space: nowrap; /* 防止文本换行 */
+    overflow: hidden; /* 隐藏超出部分 */
+    text-overflow: ellipsis; /* 超出部分显示为... */
+    }
+    .uploadButtonfont{
+        width: 56px;
+        height: 14px;
+        font-family: SourceHanSansCN-Medium;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 0px;
+        color: #ffffff;
+    }
+    .uploadButton {
+        width: 128px;
+        height: 28px;
+        background-color: #15334a;
+        border-radius: 4px;
+    }
+    .uploadButton:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    .intro_file_formatsa {
+        width: 273px;
+        height: 60px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 8px 0px rgba(90, 110, 125, 0.7);
+        border-radius: 6px;
+        margin-bottom: 30px;
+        margin-left: 15px;
+        margin-right: 15px;
+        display: flex;
+        justify-content: space-between; /* 添加此行 */
+        align-items: center; /* 垂直居中对齐 */
+    }
+
+    .intro_file_formatsa > div {
+        margin-left: 13px;
+        width: 33px;
+        height: 14px;
+        font-family: SourceHanSansCN-Medium;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 0px;
+        color: #15334a;
+    }
+
+    .intro_file_formatsa > a {
+        width: 0px !important; 
+        height: 8px !important;
+        display: inline-block;
+        margin-left: 6px;
+        margin-right: 46px;
+        background-image: url('assets/images/icon-chakan.png');
+        background-size: 18px 18px; /* 修正背景图片尺寸 */
+    }
+
+    .intro_file_form_user {
+        width: 273px;
+        height: 60px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 8px 0px rgba(90, 110, 125, 0.7);
+        border-radius: 6px;
+        margin-bottom: 30px;
+        margin-left: 15px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center; /* 垂直居中对齐 */
+    }
+
+    .intro_file_form_user > a {
+        width: 0px !important; 
+        height: 8px !important;
+        display: inline-block;
+        margin-left: 6px;
+        margin-right: 14px;
+        background-image: url('assets/images/icon-chakan.png');
+        background-size: 18px 18px; /* 修正背景图片尺寸 */
+    }
+
+    .test{
+        margin-left: 13px;
+        margin-right: 0px;
+        text-align: left;
+        width: 163px;
+        height: 14px;
+        font-family: SourceHanSansCN-Medium;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        letter-spacing: 0px;
+        color: #15334a;
+    }
+    .deleteButton {
+        width: 18px !important; 
+        height: 18px !important;
+        margin-left: 9px;
+        margin-right: 9px;
+        background-image: url('assets/images/icon-shanchu.png');
+        background-size: 18px 18px; /* 修正背景图片尺寸 */
+    }
+    /* 悬停时改变背景颜色 */
+    .deleteButton:hover {
+        background-color: #c9e5f8;;
+    }
+    .copyButton {
+        width: 18px !important; 
+        height: 18px !important;
+        background-image: url('assets/images/icon-fuzhi.png');
+        background-size: 18px 18px; /* 修正背景图片尺寸 */
+    }
+    /* 悬停时改变背景颜色 */
+    .copyButton:hover {
+        background-color: #c9e5f8;;
+    }
+</style>
+
+<style>
+    div.intro_content {
+        width: 100% !important;
+        max-width: 100% !important;
+        top:0px !important;
+    }
+</style>
+</html>
